@@ -1,0 +1,26 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# Env / secrets
+.env
+*.key
+*.pem
+
+# SQLite
+*.db
+*.sqlite3
+
+# OS/IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Evidence (large binary files — decide later if tracked or not)
+evidence/reports/*.pdf
+
+# Docker/K8s ephemeral
+*.log
