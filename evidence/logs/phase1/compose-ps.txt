@@ -1,0 +1,5 @@
+NAME                     IMAGE                 COMMAND                  SERVICE              CREATED          STATUS                    PORTS
+lab-hardened-api         docker-hardened-api   "python app.py"          hardened-api         45 minutes ago   Up 45 minutes (healthy)   0.0.0.0:5001->5001/tcp, [::]:5001->5001/tcp
+lab-vuln-docker-socket   alpine:3.20           "sleep infinity"         vuln-docker-socket   45 minutes ago   Up 45 minutes             
+lab-vuln-privileged      nginx:1.27-alpine     "/docker-entrypoint.…"   vuln-privileged      45 minutes ago   Up 45 minutes             
+lab-vuln-web             docker-vuln-web       "python app.py"          vuln-web             45 minutes ago   Up 45 minutes             0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp

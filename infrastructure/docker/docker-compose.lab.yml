@@ -1,0 +1,52 @@
+# Docker Laboratory — intentionally mixed security posture for rule-engine validation.
+# DO NOT deploy any of these configurations in production.
+# Each service is annotated with the rule IDs it is designed to trigger/pass.
+
+services:
+
+  vuln-web:
+    build: ./targets/vuln-web
+    container_name: lab-vuln-web
+    ports:
+      - "5000:5000"
+    # No user directive -> DOCKER-001 FAIL (root)
+    # No healthcheck -> DOCKER-010 FAIL
+    # No resource limits -> DOCKER-005 FAIL
+    # No restart policy -> DOCKER-012 FAIL
+    restart: "no"
+
+  vuln-privileged:
+    image: nginx:1.27-alpine
+    container_name: lab-vuln-privileged
+    privileged: true               # DOCKER-002 FAIL
+    network_mode: host             # DOCKER-006 FAIL
+    volumes:
+      - /:/host:ro                 # DOCKER-007 FAIL (sensitive host mount)
+    restart: "no"
+
+  hardened-api:
+    build: ./targets/hardened-api
+    container_name: lab-hardened-api
+    ports:
+      - "5001:5001"
+    read_only: true                # DOCKER-004 PASS
+    cap_drop:
+      - ALL                        # DOCKER-003 PASS
+    security_opt:
+      - no-new-privileges:true     # DOCKER-013 PASS
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
+    restart: unless-stopped        # DOCKER-012 PASS
+    tmpfs:
+      - /tmp
+
+  vuln-docker-socket:
+    image: alpine:3.20
+    container_name: lab-vuln-docker-socket
+    command: sleep infinity
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock   # DOCKER-009 FAIL (critical)
+    restart: "no"

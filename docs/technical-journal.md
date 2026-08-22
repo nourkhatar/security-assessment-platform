@@ -41,3 +41,48 @@ the rule engine to assess).
 
 **Thesis section affected:** Chapter 2 (Methodology/Architecture) — environment
 justification, technology stack rationale, three-layer architectural separation.
+
+## Entry 2 — 2026-08-22 — Phase 1: Docker Laboratory
+
+**Objective:** Build a fixed set of Docker lab services with known, documented security
+postures to serve as ground-truth input for the rule engine (Phase 3 onward).
+
+**Implementation:**
+- Built 4 lab services via infrastructure/docker/docker-compose.lab.yml:
+  - vuln-web: custom Flask image, runs as root, no healthcheck, no resource limits,
+    no restart policy — intentionally weak baseline.
+  - vuln-privileged: stock nginx:1.27-alpine run with privileged: true, host networking,
+    and a read-only bind mount of the host root filesystem — worst-case configuration.
+  - hardened-api: custom Flask image, non-root user (uid 1001), read-only root filesystem,
+    all capabilities dropped, no-new-privileges, resource limits, healthcheck, restart
+    policy — best-case configuration.
+  - vuln-docker-socket: alpine container with /var/run/docker.sock bind-mounted —
+    isolated demonstration of a single critical container-escape-risk misconfiguration.
+- Each service's compose definition is annotated inline with the DOCKER-XXX rule IDs it
+  is designed to trigger (FAIL) or satisfy (PASS), forming a ground-truth table for later
+  rule-engine validation.
+
+**Problem:** Evidence capture commands were run from infrastructure/docker/ using a
+relative evidence/ path, which created an unintended nested evidence/ folder inside
+infrastructure/docker/ rather than writing to the project's root evidence/ directory.
+
+**Solution:** Removed the accidental nested folder, created the correct
+evidence/logs/phase1/ and evidence/screenshots/phase1/ under the project root, and
+re-ran the capture commands using an explicit ../../evidence/logs/phase1/ relative path
+from infrastructure/docker/.
+
+**Result:** All 4 containers verified running (docker compose ps), hardened-api reaching
+a healthy state, vuln-web and hardened-api both responding correctly over HTTP,
+Privileged: true confirmed via docker inspect on vuln-privileged, and the
+/var/run/docker.sock bind mount confirmed via docker inspect on vuln-docker-socket.
+
+**Evidence:** evidence/logs/phase1/compose-ps.txt and four docker inspect JSON exports
+(one per lab service), saved and committed.
+
+**Next step:** Phase 2 — Docker discovery (enumerate the lab's running containers and
+their full configuration via the Docker SDK for Python, as input to the Phase 3 rule
+engine).
+
+**Thesis section affected:** Chapter 3 (Implementation) — "Laboratory Design" subsection;
+this entry's ground-truth table (which rule ID each service should trigger/pass) becomes
+the reference used later to report rule-engine detection accuracy.

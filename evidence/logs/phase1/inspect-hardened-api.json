@@ -1,0 +1,289 @@
+[
+    {
+        "Id": "b2d44e859666454fd4f36eff06a59eb64b9bcfa7e4b8e1bf54e70ac75f3fb18c",
+        "Created": "2026-08-22T01:22:09.109328328Z",
+        "Path": "python",
+        "Args": [
+            "app.py"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 925,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-08-22T01:22:09.561489799Z",
+            "FinishedAt": "0001-01-01T00:00:00Z",
+            "Health": {
+                "Status": "healthy",
+                "FailingStreak": 0,
+                "Log": [
+                    {
+                        "Start": "2026-08-22T02:05:19.566781789Z",
+                        "End": "2026-08-22T02:05:19.733381654Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-08-22T02:05:49.731269392Z",
+                        "End": "2026-08-22T02:05:49.860812517Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-08-22T02:06:19.859531326Z",
+                        "End": "2026-08-22T02:06:20.034317785Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-08-22T02:06:50.03325557Z",
+                        "End": "2026-08-22T02:06:50.149406033Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    },
+                    {
+                        "Start": "2026-08-22T02:07:20.147831564Z",
+                        "End": "2026-08-22T02:07:20.339646091Z",
+                        "ExitCode": 0,
+                        "Output": ""
+                    }
+                ]
+            }
+        },
+        "Image": "sha256:68420ca6eb060226d16374a923f7aeebedc8fbcae20dc29b5280da1402a340be",
+        "ResolvConfPath": "/var/lib/docker/containers/b2d44e859666454fd4f36eff06a59eb64b9bcfa7e4b8e1bf54e70ac75f3fb18c/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/b2d44e859666454fd4f36eff06a59eb64b9bcfa7e4b8e1bf54e70ac75f3fb18c/hostname",
+        "HostsPath": "/var/lib/docker/containers/b2d44e859666454fd4f36eff06a59eb64b9bcfa7e4b8e1bf54e70ac75f3fb18c/hosts",
+        "LogPath": "/var/lib/docker/containers/b2d44e859666454fd4f36eff06a59eb64b9bcfa7e4b8e1bf54e70ac75f3fb18c/b2d44e859666454fd4f36eff06a59eb64b9bcfa7e4b8e1bf54e70ac75f3fb18c-json.log",
+        "Name": "/lab-hardened-api",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "docker_default",
+            "PortBindings": {
+                "5001/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "5001"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "unless-stopped",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": [
+                "ALL"
+            ],
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": null,
+            "DnsSearch": null,
+            "ExtraHosts": [],
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": true,
+            "SecurityOpt": [
+                "no-new-privileges:true"
+            ],
+            "Tmpfs": {
+                "/tmp": ""
+            },
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 268435456,
+            "NanoCpus": 500000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 536870912,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "b2d44e859666",
+            "Domainname": "",
+            "User": "appuser",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "ExposedPorts": {
+                "5001/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.12.14",
+                "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+            ],
+            "Cmd": [
+                "python",
+                "app.py"
+            ],
+            "Healthcheck": {
+                "Test": [
+                    "CMD-SHELL",
+                    "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:5001/health')\" || exit 1"
+                ],
+                "Interval": 30000000000,
+                "Timeout": 3000000000
+            },
+            "Image": "docker-hardened-api",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": null,
+            "Labels": {
+                "com.docker.compose.config-hash": "5d3965f3029f4d68df94aa00d326921f6184e795ee4505cb6dce778bb04cf22b",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.depends_on": "",
+                "com.docker.compose.image": "sha256:68420ca6eb060226d16374a923f7aeebedc8fbcae20dc29b5280da1402a340be",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "docker",
+                "com.docker.compose.project.config_files": "/home/LUMEN/projects/security-assessment-platform/infrastructure/docker/docker-compose.lab.yml",
+                "com.docker.compose.project.working_dir": "/home/LUMEN/projects/security-assessment-platform/infrastructure/docker",
+                "com.docker.compose.service": "hardened-api",
+                "com.docker.compose.version": "5.1.1",
+                "desktop.docker.io/wsl-distro": "kali-linux"
+            },
+            "StopTimeout": 1
+        },
+        "NetworkSettings": {
+            "SandboxID": "7d5c0a9c22027619910471f53464eb3d6a93eb677351bca8a86d5c26324a81bc",
+            "SandboxKey": "/var/run/docker/netns/7d5c0a9c2202",
+            "Ports": {
+                "5001/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "5001"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "5001"
+                    }
+                ]
+            },
+            "Networks": {
+                "docker_default": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "lab-hardened-api",
+                        "hardened-api"
+                    ],
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "49d081d7be7053db4ba212c391c22f9457888f54e9e9c740d9edaba283ddaf7a",
+                    "EndpointID": "309315b905948067d1f2ff89b87667a9e983a64b14a351376122c3c4d0061c9e",
+                    "Gateway": "172.19.0.1",
+                    "IPAddress": "172.19.0.4",
+                    "MacAddress": "12:1e:9a:34:52:cb",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "lab-hardened-api",
+                        "hardened-api",
+                        "b2d44e859666"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:cdfab787f5dbc27582ceb34b2a2a4d8eb0306eb359762e1045338739b636b442",
+            "size": 1811,
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]
