@@ -1,0 +1,31 @@
+backend/discovery/docker/:
+total 16
+drwxr-xr-x 2 LUMEN LUMEN 4096 Sep  7 03:44 .
+drwxr-xr-x 4 LUMEN LUMEN 4096 Sep  7 03:44 ..
+-rw-r--r-- 1 LUMEN LUMEN 5114 Sep  7 03:44 docker_discovery.py
+-rw-r--r-- 1 LUMEN LUMEN    0 Sep  7 03:44 __init__.py
+
+backend/models/:
+total 12
+drwxr-xr-x  2 LUMEN LUMEN 4096 Sep  7 03:44 .
+drwxr-xr-x 14 LUMEN LUMEN 4096 Sep  7 03:44 ..
+-rw-r--r--  1 LUMEN LUMEN    0 Sep  7 03:44 __init__.py
+-rw-r--r--  1 LUMEN LUMEN 1958 Sep  7 03:44 service.py
+
+tests/:
+total 12
+drwxr-xr-x  2 LUMEN LUMEN 4096 Sep  7 03:44 .
+drwxr-xr-x 10 LUMEN LUMEN 4096 Aug 22 02:03 ..
+-rw-r--r--  1 LUMEN LUMEN 1612 Sep  7 03:44 test_docker_discovery.py
+---
+"""
+Normalized service snapshot model.
+
+This is the contract between Discovery (Docker/Kubernetes) and everything downstream
+(rule engine, scoring, context, AI). Discovery modules translate platform-specific
+---
+"""
+Docker discovery module.
+
+Connects to the local Docker Engine via the Docker SDK for Python and produces
+normalized ServiceSnapshot objects for every running container.
