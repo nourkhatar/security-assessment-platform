@@ -1,0 +1,228 @@
+Discovered 4 running container(s):
+
+--- lab-vuln-privileged ---
+{
+  "service_id": "2f7254a0273f",
+  "name": "lab-vuln-privileged",
+  "environment": "docker",
+  "image": "nginx:1.27-alpine",
+  "status": "running",
+  "user": null,
+  "privileged": true,
+  "cap_add": [],
+  "cap_drop": [],
+  "read_only_rootfs": false,
+  "memory_limit_bytes": null,
+  "nano_cpus": null,
+  "network_mode": "host",
+  "mounts": [
+    {
+      "source": "/",
+      "destination": "/host",
+      "mode": "ro",
+      "type": "bind"
+    }
+  ],
+  "exposed_ports": [],
+  "healthcheck": {
+    "configured": false,
+    "test": null,
+    "interval_seconds": null
+  },
+  "restart_policy": "no",
+  "security_opt": [
+    "label=disable"
+  ],
+  "pid_mode": null,
+  "ipc_mode": "private",
+  "env_vars": {
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "NGINX_VERSION": "1.27.5",
+    "PKG_RELEASE": "1",
+    "DYNPKG_RELEASE": "1",
+    "NJS_VERSION": "0.8.10",
+    "NJS_RELEASE": "1"
+  },
+  "discovered_at": "2026-09-07T02:58:29.256773Z",
+  "raw_labels": {
+    "com.docker.compose.config-hash": "5f54067582f0ab9c8b4cb550016d933a00a358d58471d148927b077735b7d2b6",
+    "com.docker.compose.container-number": "1",
+    "com.docker.compose.depends_on": "",
+    "com.docker.compose.image": "sha256:65645c7bb6a0661892a8b03b89d0743208a18dd2f3f17a54ef4b76fb8e2f2a10",
+    "com.docker.compose.oneoff": "False",
+    "com.docker.compose.project": "docker",
+    "com.docker.compose.project.config_files": "/home/LUMEN/projects/security-assessment-platform/infrastructure/docker/docker-compose.lab.yml",
+    "com.docker.compose.project.working_dir": "/home/LUMEN/projects/security-assessment-platform/infrastructure/docker",
+    "com.docker.compose.service": "vuln-privileged",
+    "com.docker.compose.version": "5.1.1",
+    "desktop.docker.io/wsl-distro": "kali-linux",
+    "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
+  }
+}
+
+--- lab-vuln-docker-socket ---
+{
+  "service_id": "62d9dc1d2161",
+  "name": "lab-vuln-docker-socket",
+  "environment": "docker",
+  "image": "alpine:3.20",
+  "status": "running",
+  "user": null,
+  "privileged": false,
+  "cap_add": [],
+  "cap_drop": [],
+  "read_only_rootfs": false,
+  "memory_limit_bytes": null,
+  "nano_cpus": null,
+  "network_mode": "docker_default",
+  "mounts": [
+    {
+      "source": "/var/run/docker.sock",
+      "destination": "/var/run/docker.sock",
+      "mode": "rw",
+      "type": "bind"
+    }
+  ],
+  "exposed_ports": [],
+  "healthcheck": {
+    "configured": false,
+    "test": null,
+    "interval_seconds": null
+  },
+  "restart_policy": "no",
+  "security_opt": [],
+  "pid_mode": null,
+  "ipc_mode": "private",
+  "env_vars": {
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  },
+  "discovered_at": "2026-09-07T02:58:29.256808Z",
+  "raw_labels": {
+    "com.docker.compose.config-hash": "f5150d0b93494229f7a651f8415a55b026f27f7533ed339ec75ff76cc6001601",
+    "com.docker.compose.container-number": "1",
+    "com.docker.compose.depends_on": "",
+    "com.docker.compose.image": "sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc",
+    "com.docker.compose.oneoff": "False",
+    "com.docker.compose.project": "docker",
+    "com.docker.compose.project.config_files": "/home/LUMEN/projects/security-assessment-platform/infrastructure/docker/docker-compose.lab.yml",
+    "com.docker.compose.project.working_dir": "/home/LUMEN/projects/security-assessment-platform/infrastructure/docker",
+    "com.docker.compose.service": "vuln-docker-socket",
+    "com.docker.compose.version": "5.1.1",
+    "desktop.docker.io/wsl-distro": "kali-linux"
+  }
+}
+
+--- lab-hardened-api ---
+{
+  "service_id": "b2d44e859666",
+  "name": "lab-hardened-api",
+  "environment": "docker",
+  "image": "docker-hardened-api",
+  "status": "running",
+  "user": "appuser",
+  "privileged": false,
+  "cap_add": [],
+  "cap_drop": [
+    "ALL"
+  ],
+  "read_only_rootfs": true,
+  "memory_limit_bytes": 268435456,
+  "nano_cpus": 500000000,
+  "network_mode": "docker_default",
+  "mounts": [],
+  "exposed_ports": [
+    {
+      "container_port": "5001",
+      "host_port": "5001",
+      "protocol": "tcp"
+    }
+  ],
+  "healthcheck": {
+    "configured": true,
+    "test": "CMD-SHELL python -c \"import urllib.request; urllib.request.urlopen('http://localhost:5001/health')\" || exit 1",
+    "interval_seconds": 30.0
+  },
+  "restart_policy": "unless-stopped",
+  "security_opt": [
+    "no-new-privileges:true"
+  ],
+  "pid_mode": null,
+  "ipc_mode": "private",
+  "env_vars": {
+    "PATH": "/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "LANG": "C.UTF-8",
+    "GPG_KEY": "7169605F62C751356D054A26A821E680E5FA6305",
+    "PYTHON_VERSION": "3.12.14",
+    "PYTHON_SHA256": "5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+  },
+  "discovered_at": "2026-09-07T02:58:29.256839Z",
+  "raw_labels": {
+    "com.docker.compose.config-hash": "5d3965f3029f4d68df94aa00d326921f6184e795ee4505cb6dce778bb04cf22b",
+    "com.docker.compose.container-number": "1",
+    "com.docker.compose.depends_on": "",
+    "com.docker.compose.image": "sha256:68420ca6eb060226d16374a923f7aeebedc8fbcae20dc29b5280da1402a340be",
+    "com.docker.compose.oneoff": "False",
+    "com.docker.compose.project": "docker",
+    "com.docker.compose.project.config_files": "/home/LUMEN/projects/security-assessment-platform/infrastructure/docker/docker-compose.lab.yml",
+    "com.docker.compose.project.working_dir": "/home/LUMEN/projects/security-assessment-platform/infrastructure/docker",
+    "com.docker.compose.service": "hardened-api",
+    "com.docker.compose.version": "5.1.1",
+    "desktop.docker.io/wsl-distro": "kali-linux"
+  }
+}
+
+--- lab-vuln-web ---
+{
+  "service_id": "3d5bd000abc3",
+  "name": "lab-vuln-web",
+  "environment": "docker",
+  "image": "docker-vuln-web",
+  "status": "running",
+  "user": null,
+  "privileged": false,
+  "cap_add": [],
+  "cap_drop": [],
+  "read_only_rootfs": false,
+  "memory_limit_bytes": null,
+  "nano_cpus": null,
+  "network_mode": "docker_default",
+  "mounts": [],
+  "exposed_ports": [
+    {
+      "container_port": "5000",
+      "host_port": "5000",
+      "protocol": "tcp"
+    }
+  ],
+  "healthcheck": {
+    "configured": false,
+    "test": null,
+    "interval_seconds": null
+  },
+  "restart_policy": "no",
+  "security_opt": [],
+  "pid_mode": null,
+  "ipc_mode": "private",
+  "env_vars": {
+    "PATH": "/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "LANG": "C.UTF-8",
+    "GPG_KEY": "7169605F62C751356D054A26A821E680E5FA6305",
+    "PYTHON_VERSION": "3.12.14",
+    "PYTHON_SHA256": "5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+  },
+  "discovered_at": "2026-09-07T02:58:29.256858Z",
+  "raw_labels": {
+    "com.docker.compose.config-hash": "f9184255004568b85c3f423e9c26d0c0407529d5db498d0637969679678e971d",
+    "com.docker.compose.container-number": "1",
+    "com.docker.compose.depends_on": "",
+    "com.docker.compose.image": "sha256:2f188e4b75ce8b0a4b485c340398ba1615192d4c3008ad9eae481c7fd5e90167",
+    "com.docker.compose.oneoff": "False",
+    "com.docker.compose.project": "docker",
+    "com.docker.compose.project.config_files": "/home/LUMEN/projects/security-assessment-platform/infrastructure/docker/docker-compose.lab.yml",
+    "com.docker.compose.project.working_dir": "/home/LUMEN/projects/security-assessment-platform/infrastructure/docker",
+    "com.docker.compose.service": "vuln-web",
+    "com.docker.compose.version": "5.1.1",
+    "desktop.docker.io/wsl-distro": "kali-linux"
+  }
+}
+
