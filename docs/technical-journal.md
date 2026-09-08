@@ -86,3 +86,54 @@ engine).
 **Thesis section affected:** Chapter 3 (Implementation) — "Laboratory Design" subsection;
 this entry's ground-truth table (which rule ID each service should trigger/pass) becomes
 the reference used later to report rule-engine detection accuracy.
+
+## Entry 3 — 7 September 2026 — Phase 2: Docker Discovery (completed and verified)
+
+**Objective:** Implement and verify a Docker discovery module producing normalized
+ServiceSnapshot objects from the running lab.
+
+**Implementation:**
+- backend/models/service.py: ServiceSnapshot Pydantic model with MountInfo, PortInfo,
+  HealthcheckInfo sub-models, covering all fields needed by the 15 planned rules.
+- backend/discovery/docker/docker_discovery.py: DockerDiscovery class using the Docker
+  SDK for Python (docker.from_env()), producing a list of ServiceSnapshot from all
+  running containers.
+- tests/test_docker_discovery.py: 5 pytest tests validating discovery output against
+  the Phase 1 lab's known ground truth.
+
+**Problem 1:** Files were initially instructed but never actually created on disk —
+confirmed via a diagnostic (ls + git status) showing empty directories, despite an
+earlier handoff report having assumed otherwise. Corrected by explicitly recreating
+all files and verifying their presence and content before proceeding further.
+
+**Problem 2:** `pip install -r requirements.txt` initially failed with Kali's PEP 668
+"externally-managed-environment" error. Root cause: the project venv was not active in
+that shell session. Resolved by re-activating (`source venv/bin/activate`) before
+reinstalling; this same root cause (forgetting to activate the venv in a fresh WSL
+terminal) recurred twice more during this phase (once for the discovery script, once
+for pytest) and was resolved the same way each time.
+
+**Problem 3:** Running the discovery script failed with a Docker daemon connection
+error (`FileNotFoundError` on `/var/run/docker.sock`). Root cause: Docker Desktop was
+not running on the Windows host at all (confirmed via `docker` CLI being entirely
+unavailable in WSL). Resolved by starting Docker Desktop and restarting the lab
+containers, which had stopped when Docker Desktop was last closed.
+
+**Result:** `pip install -r requirements.txt` succeeded (all packages, including the
+previously-unconfirmed `docker` SDK 7.1.0, installed cleanly). Discovery script executed
+successfully against all 4 running lab services; output cross-checked field-by-field
+against the Phase 1 ground truth table (privileged flag, network mode, host mount,
+docker.sock mount, non-root user, cap_drop, read-only FS, resource limits, healthcheck,
+restart policy) — full match, no discrepancies. `pytest tests/test_docker_discovery.py -v`
+— 5/5 tests passed.
+
+**Evidence:** evidence/logs/phase2/P02_files_created_confirmation.txt,
+P02_pip_install_output.txt, P02_discovery_output.json, P02_pytest_output.txt — all
+committed.
+
+**Next step:** Phase 3 — Rule Engine (DOCKER-001 through DOCKER-015), using the now-
+verified ServiceSnapshot as input.
+
+**Thesis section affected:** Chapter 4, §4.3 (Implémentation du module de découverte) —
+now fully writable with real evidence. Also feeds §5.2 methodology as the project's
+first validated component.
