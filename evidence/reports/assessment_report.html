@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { font-family: 'DejaVu Sans', sans-serif; font-size: 11px; color: #222; margin: 30px; }
+  h1 { font-size: 20px; border-bottom: 2px solid #333; padding-bottom: 8px; }
+  h2 { font-size: 15px; margin-top: 28px; border-bottom: 1px solid #999; padding-bottom: 4px; }
+  .meta { color: #555; font-size: 10px; margin-bottom: 20px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; margin-bottom: 16px; }
+  th, td { border: 1px solid #ccc; padding: 5px 8px; text-align: left; font-size: 10px; }
+  th { background: #eee; }
+  .PASS { color: #1a7a1a; font-weight: bold; }
+  .FAIL { color: #b31212; font-weight: bold; }
+  .NA { color: #888; }
+  .score-box { display: inline-block; padding: 6px 14px; border-radius: 4px; font-size: 16px; font-weight: bold; color: white; }
+  .risk-LOW { background: #2e7d32; }
+  .risk-MEDIUM { background: #f9a825; }
+  .risk-HIGH { background: #e65100; }
+  .risk-CRITICAL { background: #b71c1c; }
+</style>
+</head>
+<body>
+  <h1>Intelligent Security Assessment Report</h1>
+  <div class="meta">
+    Run ID: report-2026-09-09T04:24:20.425145+00:00<br>
+    Generated: 2026-09-09T04:24:20.430570+00:00<br>
+    Platform: Docker Security Assessment Engine
+  </div>
+
+  
+  <h2>lab-vuln-privileged</h2>
+  <p>
+    Technical Score: <span class="score-box" style="background:#455a64;">34/100</span>
+    &nbsp;&nbsp;
+    
+    Contextual Risk: <span class="score-box risk-HIGH">HIGH</span>
+    
+  </p>
+  <table>
+    <tr><th>Rule</th><th>Severity</th><th>Status</th><th>Evidence</th></tr>
+    
+    <tr>
+      <td>DOCKER-001 — Non-root execution</td>
+      <td>HIGH</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'user', 'value': None}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-002 — Privileged mode</td>
+      <td>CRITICAL</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'privileged', 'value': True}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-003 — Linux capabilities</td>
+      <td>HIGH</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'cap_add/cap_drop', 'cap_add': [], 'cap_drop': []}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-004 — Read-only filesystem</td>
+      <td>MEDIUM</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'read_only_rootfs', 'value': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-005 — Resource limits</td>
+      <td>LOW</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'memory_limit_bytes/nano_cpus', 'memory_limit_bytes': None, 'nano_cpus': None}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-006 — Host networking</td>
+      <td>CRITICAL</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'network_mode', 'value': 'host'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-007 — Sensitive host mounts</td>
+      <td>CRITICAL</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'mounts', 'flagged_mounts': [{'source': '/', 'destination': '/host', 'mode': 'ro', 'type': 'bind'}]}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-008 — Exposed ports</td>
+      <td>MEDIUM</td>
+      <td class="NA">N/A</td>
+      <td>{'inspected_field': 'exposed_ports', 'value': []}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-009 — Docker socket exposure</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'mounts', 'socket_mounted': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-010 — Healthcheck</td>
+      <td>LOW</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'healthcheck.configured', 'value': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-011 — Image configuration</td>
+      <td>MEDIUM</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'image', 'value': 'nginx:1.27-alpine'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-012 — Restart policy</td>
+      <td>LOW</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'restart_policy', 'value': 'no'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-013 — Security options</td>
+      <td>MEDIUM</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'security_opt', 'value': ['label=disable']}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-014 — Host PID/IPC modes</td>
+      <td>HIGH</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'pid_mode/ipc_mode', 'pid_mode': None, 'ipc_mode': 'private'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-015 — Sensitive environment configuration</td>
+      <td>HIGH</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'env_vars', 'flagged_keys': []}</td>
+    </tr>
+    
+  </table>
+  
+  <h2>lab-vuln-docker-socket</h2>
+  <p>
+    Technical Score: <span class="score-box" style="background:#455a64;">58/100</span>
+    &nbsp;&nbsp;
+    
+    Contextual Risk: <span class="score-box risk-HIGH">HIGH</span>
+    
+  </p>
+  <table>
+    <tr><th>Rule</th><th>Severity</th><th>Status</th><th>Evidence</th></tr>
+    
+    <tr>
+      <td>DOCKER-001 — Non-root execution</td>
+      <td>HIGH</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'user', 'value': None}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-002 — Privileged mode</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'privileged', 'value': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-003 — Linux capabilities</td>
+      <td>HIGH</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'cap_add/cap_drop', 'cap_add': [], 'cap_drop': []}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-004 — Read-only filesystem</td>
+      <td>MEDIUM</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'read_only_rootfs', 'value': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-005 — Resource limits</td>
+      <td>LOW</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'memory_limit_bytes/nano_cpus', 'memory_limit_bytes': None, 'nano_cpus': None}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-006 — Host networking</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'network_mode', 'value': 'docker_default'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-007 — Sensitive host mounts</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'mounts', 'flagged_mounts': []}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-008 — Exposed ports</td>
+      <td>MEDIUM</td>
+      <td class="NA">N/A</td>
+      <td>{'inspected_field': 'exposed_ports', 'value': []}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-009 — Docker socket exposure</td>
+      <td>CRITICAL</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'mounts', 'socket_mounted': True}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-010 — Healthcheck</td>
+      <td>LOW</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'healthcheck.configured', 'value': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-011 — Image configuration</td>
+      <td>MEDIUM</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'image', 'value': 'alpine:3.20'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-012 — Restart policy</td>
+      <td>LOW</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'restart_policy', 'value': 'no'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-013 — Security options</td>
+      <td>MEDIUM</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'security_opt', 'value': []}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-014 — Host PID/IPC modes</td>
+      <td>HIGH</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'pid_mode/ipc_mode', 'pid_mode': None, 'ipc_mode': 'private'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-015 — Sensitive environment configuration</td>
+      <td>HIGH</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'env_vars', 'flagged_keys': []}</td>
+    </tr>
+    
+  </table>
+  
+  <h2>lab-hardened-api</h2>
+  <p>
+    Technical Score: <span class="score-box" style="background:#455a64;">83/100</span>
+    &nbsp;&nbsp;
+    
+    Contextual Risk: <span class="score-box risk-LOW">LOW</span>
+    
+  </p>
+  <table>
+    <tr><th>Rule</th><th>Severity</th><th>Status</th><th>Evidence</th></tr>
+    
+    <tr>
+      <td>DOCKER-001 — Non-root execution</td>
+      <td>HIGH</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'user', 'value': 'appuser'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-002 — Privileged mode</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'privileged', 'value': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-003 — Linux capabilities</td>
+      <td>HIGH</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'cap_add/cap_drop', 'cap_add': [], 'cap_drop': ['ALL']}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-004 — Read-only filesystem</td>
+      <td>MEDIUM</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'read_only_rootfs', 'value': True}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-005 — Resource limits</td>
+      <td>LOW</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'memory_limit_bytes/nano_cpus', 'memory_limit_bytes': 268435456, 'nano_cpus': 500000000}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-006 — Host networking</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'network_mode', 'value': 'docker_default'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-007 — Sensitive host mounts</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'mounts', 'flagged_mounts': []}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-008 — Exposed ports</td>
+      <td>MEDIUM</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'exposed_ports', 'value': [{'container_port': '5001', 'host_port': '5001', 'protocol': 'tcp'}]}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-009 — Docker socket exposure</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'mounts', 'socket_mounted': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-010 — Healthcheck</td>
+      <td>LOW</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'healthcheck.configured', 'value': True}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-011 — Image configuration</td>
+      <td>MEDIUM</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'image', 'value': 'docker-hardened-api'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-012 — Restart policy</td>
+      <td>LOW</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'restart_policy', 'value': 'unless-stopped'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-013 — Security options</td>
+      <td>MEDIUM</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'security_opt', 'value': ['no-new-privileges:true']}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-014 — Host PID/IPC modes</td>
+      <td>HIGH</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'pid_mode/ipc_mode', 'pid_mode': None, 'ipc_mode': 'private'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-015 — Sensitive environment configuration</td>
+      <td>HIGH</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'env_vars', 'flagged_keys': ['GPG_KEY']}</td>
+    </tr>
+    
+  </table>
+  
+  <h2>lab-vuln-web</h2>
+  <p>
+    Technical Score: <span class="score-box" style="background:#455a64;">54/100</span>
+    &nbsp;&nbsp;
+    
+    Contextual Risk: <span class="score-box risk-MEDIUM">MEDIUM</span>
+    
+  </p>
+  <table>
+    <tr><th>Rule</th><th>Severity</th><th>Status</th><th>Evidence</th></tr>
+    
+    <tr>
+      <td>DOCKER-001 — Non-root execution</td>
+      <td>HIGH</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'user', 'value': None}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-002 — Privileged mode</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'privileged', 'value': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-003 — Linux capabilities</td>
+      <td>HIGH</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'cap_add/cap_drop', 'cap_add': [], 'cap_drop': []}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-004 — Read-only filesystem</td>
+      <td>MEDIUM</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'read_only_rootfs', 'value': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-005 — Resource limits</td>
+      <td>LOW</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'memory_limit_bytes/nano_cpus', 'memory_limit_bytes': None, 'nano_cpus': None}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-006 — Host networking</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'network_mode', 'value': 'docker_default'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-007 — Sensitive host mounts</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'mounts', 'flagged_mounts': []}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-008 — Exposed ports</td>
+      <td>MEDIUM</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'exposed_ports', 'value': [{'container_port': '5000', 'host_port': '5000', 'protocol': 'tcp'}]}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-009 — Docker socket exposure</td>
+      <td>CRITICAL</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'mounts', 'socket_mounted': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-010 — Healthcheck</td>
+      <td>LOW</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'healthcheck.configured', 'value': False}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-011 — Image configuration</td>
+      <td>MEDIUM</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'image', 'value': 'docker-vuln-web'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-012 — Restart policy</td>
+      <td>LOW</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'restart_policy', 'value': 'no'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-013 — Security options</td>
+      <td>MEDIUM</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'security_opt', 'value': []}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-014 — Host PID/IPC modes</td>
+      <td>HIGH</td>
+      <td class="PASS">PASS</td>
+      <td>{'inspected_field': 'pid_mode/ipc_mode', 'pid_mode': None, 'ipc_mode': 'private'}</td>
+    </tr>
+    
+    <tr>
+      <td>DOCKER-015 — Sensitive environment configuration</td>
+      <td>HIGH</td>
+      <td class="FAIL">FAIL</td>
+      <td>{'inspected_field': 'env_vars', 'flagged_keys': ['GPG_KEY']}</td>
+    </tr>
+    
+  </table>
+  
+</body>
+</html>
