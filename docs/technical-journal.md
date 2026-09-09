@@ -185,3 +185,31 @@ against these real Finding objects.
 **Thesis section affected:** Chapter 4, §4.4 (Implémentation du moteur de règles).
 Also feeds §5.2 (Résultats de l'évaluation technique) and §5.8 (Limites) with the
 two documented quirks above as legitimate validation findings.
+
+## Entry 5 — 9 September 2026 — Phase 4: Technical Scoring (completed and verified)
+
+**Objective:** Implement the frozen §3.7 formula against real Finding objects from
+Phase 3.
+
+**Implementation:**
+- backend/scoring/technical_score.py: calculate_technical_score(), pure function
+  over a list of Finding objects. Excludes N/A findings from both numerator and
+  denominator. Returns a TechnicalScore object with rounded and unrounded values.
+
+**Result:** Scores computed for all 4 lab services and independently verified against
+a manual hand-calculation performed before running the code:
+lab-vuln-privileged=34, lab-vuln-docker-socket=58, lab-hardened-api=83, lab-vuln-web=54.
+All four matched exactly. pytest suite (6 tests: 4 exact-score checks, reproducibility
+across repeated runs, 0-100 range validity) — 6/6 passed.
+
+**Evidence:** evidence/logs/phase4/P04_technical_scores.txt, P04_pytest_output.txt —
+committed.
+
+**Next step:** Phase 5+6 — Service Context model and Contextual Risk, implementing
+the frozen §3.8 model. This phase produces the project's central experimental result:
+demonstrating that identical technical scores yield different contextual risk under
+different service context.
+
+**Thesis section affected:** Chapter 4, §4.5 (Implémentation du scoring technique).
+Feeds §5.2 as a headline result (score table alongside the rule-level findings from
+Phase 3).
