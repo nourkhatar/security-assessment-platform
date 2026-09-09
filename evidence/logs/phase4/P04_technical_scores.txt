@@ -1,0 +1,5 @@
+Service                    Score    Failed/Applicable
+lab-vuln-privileged           34 10/               14
+lab-vuln-docker-socket        58 8/               14
+lab-hardened-api              83 3/               15
+lab-vuln-web                  54 10/               15

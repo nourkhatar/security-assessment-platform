@@ -1,0 +1,15 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-8.3.4, pluggy-1.6.0 -- /home/LUMEN/projects/security-assessment-platform/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/LUMEN/projects/security-assessment-platform
+plugins: anyio-4.14.2
+collecting ... collected 6 items
+
+tests/test_technical_score.py::test_score_matches_expected[lab-vuln-privileged-34] PASSED [ 16%]
+tests/test_technical_score.py::test_score_matches_expected[lab-vuln-docker-socket-58] PASSED [ 33%]
+tests/test_technical_score.py::test_score_matches_expected[lab-hardened-api-83] PASSED [ 50%]
+tests/test_technical_score.py::test_score_matches_expected[lab-vuln-web-54] PASSED [ 66%]
+tests/test_technical_score.py::test_score_reproducibility PASSED         [ 83%]
+tests/test_technical_score.py::test_score_range_is_valid PASSED          [100%]
+
+============================== 6 passed in 0.27s ===============================
