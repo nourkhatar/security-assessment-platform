@@ -253,3 +253,37 @@ runs short.
 contextuel). This is the headline result for Chapter 5, §5.3 (Résultats de
 l'évaluation contextuelle) — the core technical-score-vs-contextual-risk
 comparison the entire project is built around.
+
+## Entry 7 — 9 September 2026 — Phase 11 (partial): Reporting & Integrity (completed and verified)
+
+**Objective:** Produce a minimal but functional report artifact consolidating
+discovery, findings, technical score, and contextual risk; implement and verify
+SHA-256 integrity hashing.
+
+**Implementation:**
+- backend/reporting/templates/report.html: Jinja2 template, per-service findings
+  table with technical score and (where assigned) contextual risk.
+- backend/reporting/report_builder.py: assembles live pipeline output (Discovery
+  -> Rules -> Score -> Context/Risk) into the template, renders to PDF via
+  WeasyPrint, computes and saves a SHA-256 hash alongside the report.
+- backend/integrity/hashing.py: compute_sha256() / verify_sha256().
+
+**Result:** A real PDF report (25540 bytes, confirmed valid via `file`) was
+generated for all 4 lab services with assigned contexts, alongside its SHA-256
+hash. Integrity mechanism validated with 4 tests, critically including a
+tamper-detection test (hash computed, file modified, verification correctly
+fails) - this is the actual substance of the integrity claim, not just hash
+computation. pytest: 4/4 passed.
+
+**Evidence:** evidence/reports/assessment_report.pdf,
+assessment_report.pdf.sha256, assessment_report.html;
+evidence/logs/phase11/P11_integrity_pytest_output.txt — committed.
+
+**Deferred:** QR code generation - decision pending, to be added only if cheap
+given remaining time (per priority order set 9 September).
+
+**Next step:** Phase 7 - Monitoring (cAdvisor -> Prometheus -> Grafana, minimal).
+
+**Thesis section affected:** Chapter 4, §4.11 (Visualisation, reporting et
+intégrité) - report generation and integrity portions now fully writable; QR
+subsection pending decision.
