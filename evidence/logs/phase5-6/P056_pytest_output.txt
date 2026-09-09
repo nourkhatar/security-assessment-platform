@@ -1,0 +1,15 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-8.3.4, pluggy-1.6.0 -- /home/LUMEN/projects/security-assessment-platform/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/LUMEN/projects/security-assessment-platform
+plugins: anyio-4.14.2
+collecting ... collected 6 items
+
+tests/test_contextual_risk.py::test_context_weight_zero_is_low_tier PASSED [ 16%]
+tests/test_contextual_risk.py::test_context_weight_max_is_critical_tier PASSED [ 33%]
+tests/test_contextual_risk.py::test_technical_score_80_is_low_tier PASSED [ 50%]
+tests/test_contextual_risk.py::test_technical_score_79_is_medium_tier PASSED [ 66%]
+tests/test_contextual_risk.py::test_technical_score_39_is_critical_tier PASSED [ 83%]
+tests/test_contextual_risk.py::test_same_technical_score_different_context_different_risk PASSED [100%]
+
+============================== 6 passed in 0.06s ===============================

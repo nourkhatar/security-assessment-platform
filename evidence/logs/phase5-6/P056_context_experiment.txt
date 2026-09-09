@@ -1,0 +1,14 @@
+Real technical score for lab-hardened-api: 83
+
+--- Scenario A (internal, low criticality) ---
+  Technical Score:     82.75862068965517 (Tier: LOW)
+  Context Weight:      0 (Tier: LOW)
+  rank_sum:            0
+  Contextual Risk:     LOW
+
+--- Scenario B (internet-facing, critical, PII) ---
+  Technical Score:     82.75862068965517 (Tier: LOW)
+  Context Weight:      7 (Tier: CRITICAL)
+  rank_sum:            3
+  Contextual Risk:     HIGH
+
