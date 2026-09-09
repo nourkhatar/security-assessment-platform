@@ -213,3 +213,43 @@ different service context.
 **Thesis section affected:** Chapter 4, §4.5 (Implémentation du scoring technique).
 Feeds §5.2 as a headline result (score table alongside the rule-level findings from
 Phase 3).
+
+## Entry 6 — 9 September 2026 — Phase 5+6: Service Context & Contextual Risk (completed and verified)
+
+**Objective:** Implement the frozen §3.8 contextual risk model and execute the
+project's central experiment: identical technical score, different service context,
+different contextual risk.
+
+**Implementation:**
+- backend/models/context.py: ServiceContext model, Criticality/Exposure/
+  DataSensitivity enums, frozen point tables per §3.8.
+- backend/context/contextual_risk.py: calculate_contextual_risk(), implementing
+  Context Weight -> Context Tier, Technical Score -> Technical Tier, rank_sum ->
+  Contextual Risk Level, exactly per the frozen tier boundaries.
+- backend/context/run_experiment.py: the actual A/B experiment script, applying
+  two ServiceContext profiles to the real, previously-verified technical score of
+  lab-hardened-api (83).
+
+**Result:** Real technical score (82.76, rounds to 83) held constant; Scenario A
+(internal, low criticality, no sensitive data) produced Contextual Risk = LOW;
+Scenario B (internet-facing, critical, PII) produced Contextual Risk = HIGH from
+the identical technical score. This is the project's core methodological claim,
+demonstrated with executed code against a real service rather than a hypothetical
+example. pytest suite (6 tests: context weight boundaries, technical tier
+boundaries, and the A/B experiment as an assertion) - 6/6 passed.
+
+**Evidence:** evidence/logs/phase5-6/P056_context_experiment.txt,
+P056_pytest_output.txt — committed.
+
+**Next step:** reassess remaining scope given calendar position (9 September,
+feature freeze target 7 September has technically passed per the original schedule,
+though the project's internal phase sequencing is still mid-stream). Candidates:
+Phase 7 (Monitoring), Phase 8 (AI), Phase 9 (Kubernetes PoC), Phase 10 (Security
+Testing), Phase 11 (Reporting/QR) remain, per the original brief's own priority
+classification, with AI and Kubernetes as the first reduction candidates if time
+runs short.
+
+**Thesis section affected:** Chapter 4, §4.6 (Contexte et calcul du risque
+contextuel). This is the headline result for Chapter 5, §5.3 (Résultats de
+l'évaluation contextuelle) — the core technical-score-vs-contextual-risk
+comparison the entire project is built around.
