@@ -137,3 +137,51 @@ verified ServiceSnapshot as input.
 **Thesis section affected:** Chapter 4, §4.3 (Implémentation du module de découverte) —
 now fully writable with real evidence. Also feeds §5.2 methodology as the project's
 first validated component.
+
+## Entry 4 — 9 September 2026 — Phase 3: Rule Engine (completed and verified)
+
+**Objective:** Implement the 15 Docker security rules (DOCKER-001..015) per the frozen
+§3.7 severity table, producing structured Finding objects from ServiceSnapshot input.
+
+**Implementation:**
+- backend/assessment/findings/finding.py: Finding model, FindingStatus/Severity enums,
+  frozen SEVERITY_WEIGHT table matching §3.7 exactly.
+- backend/assessment/rules/docker/rules.py: 15 rule functions, each returning
+  (status, evidence) via a registry decorator pattern.
+- backend/assessment/engine/rule_engine.py: RuleEngine class evaluating the full
+  catalog against a ServiceSnapshot.
+
+**Problem 1:** Files were instructed across three separate message blocks but not
+created until explicitly run and individually verified via ls -la after each block —
+repeating the same pattern as Phase 2's false start. Verifying file size after each
+block before proceeding prevented a repeat of that error this time.
+
+**Problem 2:** Running rule_engine.py directly as a script failed with
+ModuleNotFoundError: No module named 'backend', because top-level imports execute
+before the script's own sys.path fix (inside __main__) takes effect. Resolved by
+running as a module instead: `python3 -m backend.assessment.engine.rule_engine`.
+This will be the standard invocation method going forward for all manual script runs.
+
+**Result:** All 15 rules executed successfully against all 4 lab services (60 verdicts
+total). Cross-checked against Phase 1 ground truth — full match on all rules for
+vuln-privileged, vuln-docker-socket, and vuln-web. hardened-api matched on 13/15,
+with 2 verdicts surfacing genuine, documented findings rather than bugs:
+(1) DOCKER-008 flags any exposed port without distinguishing necessary vs excessive
+exposure — a known limitation of the rule's simplicity; (2) DOCKER-011 flags the
+locally-built, untagged hardened-api image as unpinned — expected behavior for a
+lab-built image without a registry tag; (3) DOCKER-015 produces a false positive on
+the GPG_KEY environment variable inherited from the official python:3.12-slim base
+image (a public key fingerprint, not a secret), due to naive substring keyword
+matching. All three are documented rather than hidden.
+pytest tests/test_rule_engine.py -v — 4/4 tests passed, encoding the actual verified
+behavior including the above quirks.
+
+**Evidence:** evidence/logs/phase3/P03_rule_engine_output.txt, P03_pytest_output.txt —
+committed.
+
+**Next step:** Phase 4 — Technical Scoring, implementing the frozen §3.7 formula
+against these real Finding objects.
+
+**Thesis section affected:** Chapter 4, §4.4 (Implémentation du moteur de règles).
+Also feeds §5.2 (Résultats de l'évaluation technique) and §5.8 (Limites) with the
+two documented quirks above as legitimate validation findings.
