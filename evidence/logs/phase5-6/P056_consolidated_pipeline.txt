@@ -1,0 +1,6 @@
+Service                                   Score   TechTier    CtxTier       Risk
+lab-vuln-privileged                          34   CRITICAL     MEDIUM       HIGH
+lab-vuln-docker-socket                       58       HIGH     MEDIUM       HIGH
+lab-hardened-api (scenario A)                83        LOW        LOW        LOW
+lab-hardened-api (scenario B)                83        LOW   CRITICAL       HIGH
+lab-vuln-web                                 54       HIGH        LOW     MEDIUM
