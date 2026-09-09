@@ -1,0 +1,13 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-8.3.4, pluggy-1.6.0 -- /home/LUMEN/projects/security-assessment-platform/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/LUMEN/projects/security-assessment-platform
+plugins: anyio-4.14.2
+collecting ... collected 4 items
+
+tests/test_rule_engine.py::test_service_verdicts_match_ground_truth[lab-vuln-privileged] PASSED [ 25%]
+tests/test_rule_engine.py::test_service_verdicts_match_ground_truth[lab-vuln-docker-socket] PASSED [ 50%]
+tests/test_rule_engine.py::test_service_verdicts_match_ground_truth[lab-hardened-api] PASSED [ 75%]
+tests/test_rule_engine.py::test_service_verdicts_match_ground_truth[lab-vuln-web] PASSED [100%]
+
+============================== 4 passed in 0.21s ===============================
