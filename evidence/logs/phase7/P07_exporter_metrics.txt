@@ -1,0 +1,30 @@
+# HELP docker_container_cpu_percent CPU usage percentage
+# TYPE docker_container_cpu_percent gauge
+# HELP docker_container_memory_usage_bytes Memory usage in bytes
+# TYPE docker_container_memory_usage_bytes gauge
+# HELP docker_container_memory_percent Memory usage as percent of limit
+# TYPE docker_container_memory_percent gauge
+# HELP docker_container_running Container running state (1=running, 0=not)
+# TYPE docker_container_running gauge
+# HELP docker_container_uptime_seconds Seconds since container start
+# TYPE docker_container_uptime_seconds gauge
+docker_container_running{name="lab-vuln-privileged"} 1
+docker_container_cpu_percent{name="lab-vuln-privileged"} 0.0000
+docker_container_memory_usage_bytes{name="lab-vuln-privileged"} 20180992
+docker_container_memory_percent{name="lab-vuln-privileged"} 0.1215
+docker_container_uptime_seconds{name="lab-vuln-privileged"} 110014
+docker_container_running{name="lab-vuln-docker-socket"} 1
+docker_container_cpu_percent{name="lab-vuln-docker-socket"} 0.0000
+docker_container_memory_usage_bytes{name="lab-vuln-docker-socket"} 983040
+docker_container_memory_percent{name="lab-vuln-docker-socket"} 0.0059
+docker_container_uptime_seconds{name="lab-vuln-docker-socket"} 110016
+docker_container_running{name="lab-hardened-api"} 1
+docker_container_cpu_percent{name="lab-hardened-api"} 7.2975
+docker_container_memory_usage_bytes{name="lab-hardened-api"} 43814912
+docker_container_memory_percent{name="lab-hardened-api"} 16.3223
+docker_container_uptime_seconds{name="lab-hardened-api"} 110319
+docker_container_running{name="lab-vuln-web"} 1
+docker_container_cpu_percent{name="lab-vuln-web"} 0.0212
+docker_container_memory_usage_bytes{name="lab-vuln-web"} 21618688
+docker_container_memory_percent{name="lab-vuln-web"} 0.1301
+docker_container_uptime_seconds{name="lab-vuln-web"} 110021
