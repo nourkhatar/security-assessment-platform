@@ -287,3 +287,54 @@ given remaining time (per priority order set 9 September).
 **Thesis section affected:** Chapter 4, §4.11 (Visualisation, reporting et
 intégrité) - report generation and integrity portions now fully writable; QR
 subsection pending decision.
+
+## Entry 8 — 10 September 2026 — Phase 7: Monitoring (completed and verified, with architecture deviation)
+
+**Objective:** Minimal monitoring stack (metrics collection -> visualization) for
+the Docker laboratory, per the original cAdvisor -> Prometheus -> Grafana design.
+
+**Implementation:**
+- infrastructure/docker-compose.monitoring.yml: cAdvisor, Prometheus, Grafana
+  as a separate compose stack alongside the lab.
+- backend/monitoring/docker_exporter.py: custom lightweight Prometheus exporter
+  built on the Docker SDK (the same docker.from_env() connection validated in
+  Phase 2), exposing CPU %, memory usage/limit/percent, running state, and
+  uptime per lab container.
+- infrastructure/grafana/dashboards/lab-monitoring.json: provisioned dashboard,
+  4 panels (CPU, memory MB, memory %, running state).
+
+**Problem:** cAdvisor, mounted against Kali WSL2's own /sys, /var/lib/docker,
+saw only system-level cgroup slices (/, /docker, /kubepods) and zero individual
+containers. Root cause: Docker Desktop runs the actual Docker daemon inside its
+own internal utility VM, not inside the WSL2 distro Kali runs in - the container
+cgroups cAdvisor needs direct filesystem access to simply do not exist in Kali's
+filesystem. This is a known, documented limitation of cAdvisor against Docker
+Desktop's architecture (Windows and Mac), not fixable by reconfiguring mounts.
+
+**Solution:** Replaced cAdvisor as the per-container metrics source with a custom
+Python exporter using the Docker SDK, which reaches real container stats through
+the Docker Engine API rather than raw cgroup access - sidestepping the WSL2/VM
+boundary entirely. Prometheus and Grafana were kept unchanged; only the metrics
+source changed.
+
+MEMOIRE UPDATE REQUIRED — §3.2/§3.9: architecture changes from
+"Docker runtime -> cAdvisor -> Prometheus -> Grafana" to "Docker Engine API ->
+custom Docker SDK exporter -> Prometheus -> Grafana". Architectural role
+unchanged: monitoring remains a parallel, read-only runtime-observation branch
+with no influence on deterministic scoring or contextual risk.
+
+**Result:** Exporter verified against known ground truth - hardened-api's
+reported memory_percent (16.13%) matches its configured 256MB limit exactly
+(43,307,008 / 268,435,456 bytes), and reported uptime matched docker compose ps
+independently. Prometheus scrape target confirmed healthy (health: up, no
+error). Grafana dashboard confirmed provisioned via API and populated with real
+data for all 4 lab containers.
+
+**Evidence:** evidence/logs/phase7/P07_exporter_metrics.txt,
+P07_prometheus_targets.json, P07_grafana_dashboard_confirmed.json — committed.
+
+**Next step:** Phase 8 - AI layer (minimal, grounded, downstream only).
+
+**Thesis section affected:** Chapter 4, §4.7 (Mise en place du monitoring) -
+must include the cAdvisor limitation and the architecture deviation explicitly,
+not hide it. Also feeds §5.4 (Validation du monitoring) and §5.8 (Limites).
