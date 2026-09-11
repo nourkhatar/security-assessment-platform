@@ -3,11 +3,12 @@ platform linux -- Python 3.13.12, pytest-8.3.4, pluggy-1.6.0 -- /home/LUMEN/proj
 cachedir: .pytest_cache
 rootdir: /home/LUMEN/projects/security-assessment-platform
 plugins: anyio-4.14.2
-collecting ... collected 4 items
+collecting ... collected 5 items
 
-tests/test_report_integrity.py::test_hash_is_deterministic PASSED        [ 25%]
-tests/test_report_integrity.py::test_verify_detects_unmodified_file PASSED [ 50%]
-tests/test_report_integrity.py::test_verify_detects_tampering PASSED     [ 75%]
-tests/test_report_integrity.py::test_real_report_hash_matches_saved_hash PASSED [100%]
+tests/test_report_integrity.py::test_hash_is_deterministic PASSED        [ 20%]
+tests/test_report_integrity.py::test_verify_detects_unmodified_file PASSED [ 40%]
+tests/test_report_integrity.py::test_verify_detects_tampering PASSED     [ 60%]
+tests/test_report_integrity.py::test_real_report_hash_matches_saved_hash PASSED [ 80%]
+tests/test_report_integrity.py::test_qr_payload_uses_report_hash PASSED  [100%]
 
-============================== 4 passed in 0.02s ===============================
+============================== 5 passed in 0.03s ===============================

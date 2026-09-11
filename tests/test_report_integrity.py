@@ -37,3 +37,27 @@ def test_real_report_hash_matches_saved_hash():
     with open(hash_path) as f:
         saved_hash = f.read().strip()
     assert verify_sha256(report_path, saved_hash) is True
+
+def test_qr_payload_uses_report_hash(tmp_path, monkeypatch):
+    from backend.integrity import qr as qr_module
+
+    captured = {}
+
+    class FakeImage:
+        def save(self, output_path):
+            captured["output_path"] = str(output_path)
+
+    def fake_make(payload):
+        captured["payload"] = payload
+        return FakeImage()
+
+    monkeypatch.setattr(qr_module.qrcode, "make", fake_make)
+
+    report_hash = "a" * 64
+    qr_path = tmp_path / "report.qr.png"
+
+    result = qr_module.generate_hash_qr(report_hash, str(qr_path))
+
+    assert captured["payload"] == f"SHA256:{report_hash}"
+    assert captured["output_path"] == str(qr_path)
+    assert result == str(qr_path)

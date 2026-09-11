@@ -13,6 +13,7 @@ from backend.assessment.engine.rule_engine import RuleEngine
 from backend.scoring.technical_score import calculate_technical_score
 from backend.assessment.findings.finding import FindingStatus
 from backend.integrity.hashing import compute_sha256
+from backend.integrity.qr import generate_hash_qr
 
 TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), "templates")
 
@@ -22,6 +23,7 @@ def build_report(output_path: str, context_by_service: dict = None):
 
     discovery = DockerDiscovery()
     services = discovery.discover_all()
+    services = [s for s in services if s.name.startswith("lab-")]
     engine = RuleEngine(run_id=f"report-{datetime.now(timezone.utc).isoformat()}")
 
     service_data = []
@@ -71,6 +73,9 @@ def build_report(output_path: str, context_by_service: dict = None):
     hash_path = output_path + ".sha256"
     with open(hash_path, "w") as f:
         f.write(report_hash)
+
+    qr_path = output_path + ".qr.png"
+    generate_hash_qr(report_hash, qr_path)
 
     return output_path, report_hash
 
