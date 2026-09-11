@@ -1,0 +1,19 @@
+=== SCENARIO 3 — HARDENED CONTAINER CONTROLS ===
+
+[Runtime configuration]
+User=appuser ReadonlyRootfs=true RestartPolicy=unless-stopped
+
+[Capabilities]
+CapDrop=["ALL"] CapAdd=null
+
+[Security options]
+["no-new-privileges:true"]
+
+[Execution identity inside container]
+uid=1001(appuser) gid=999(appuser) groups=999(appuser)
+
+[Root filesystem write test]
+PASS: root filesystem write blocked
+
+[tmpfs write test]
+PASS: /tmp remains writable

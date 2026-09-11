@@ -1,0 +1,12 @@
+=== SCENARIO 2 — DOCKER SOCKET EXPOSURE ===
+
+[Configured mount]
+/var/run/docker.sock -> /var/run/docker.sock (RW=true)
+
+
+[Execution identity inside container]
+uid=0(root) gid=0(root) groups=0(root),0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(dialout),26(tape),27(video)
+
+[Socket visible inside container]
+srw-rw----    1 root     1001             0 Sep  9 00:42 /var/run/docker.sock
+Docker socket is accessible as a Unix socket
