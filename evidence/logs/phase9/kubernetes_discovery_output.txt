@@ -1,0 +1,51 @@
+Discovered 1 Kubernetes container(s):
+
+--- vulnerable-web-65db8fc64f-gqdkp/web ---
+{
+  "service_id": "bf26c8ad-6f7",
+  "name": "vulnerable-web-65db8fc64f-gqdkp/web",
+  "environment": "kubernetes",
+  "image": "nginx:latest",
+  "status": "running",
+  "user": "0",
+  "privileged": false,
+  "cap_add": [],
+  "cap_drop": [],
+  "read_only_rootfs": false,
+  "memory_limit_bytes": null,
+  "nano_cpus": null,
+  "network_mode": "pod-network",
+  "mounts": [
+    {
+      "source": "kube-api-access-hv5fd",
+      "destination": "/var/run/secrets/kubernetes.io/serviceaccount",
+      "mode": "ro",
+      "type": "kubernetes-volume"
+    }
+  ],
+  "exposed_ports": [
+    {
+      "container_port": "80",
+      "host_port": null,
+      "protocol": "tcp"
+    }
+  ],
+  "healthcheck": {
+    "configured": false,
+    "test": null,
+    "interval_seconds": null
+  },
+  "restart_policy": "Always",
+  "security_opt": [],
+  "pid_mode": null,
+  "ipc_mode": null,
+  "env_vars": {
+    "DEMO_SECRET": "poc-only-value"
+  },
+  "discovered_at": "2026-09-11T14:11:44.449159Z",
+  "raw_labels": {
+    "app": "vulnerable-web",
+    "pod-template-hash": "65db8fc64f"
+  }
+}
+

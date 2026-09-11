@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-8.3.4, pluggy-1.6.0 -- /home/LUMEN/projects/security-assessment-platform/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/LUMEN/projects/security-assessment-platform
+plugins: anyio-4.14.2
+collecting ... collected 3 items
+
+tests/test_kubernetes_discovery.py::test_kubernetes_poc_service_is_discovered PASSED [ 33%]
+tests/test_kubernetes_discovery.py::test_kubernetes_security_properties_are_normalized PASSED [ 66%]
+tests/test_kubernetes_discovery.py::test_kubernetes_ports_and_environment_are_discovered PASSED [100%]
+
+============================== 3 passed in 0.36s ===============================
