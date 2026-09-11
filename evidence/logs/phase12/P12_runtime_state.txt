@@ -1,0 +1,16 @@
+=== DOCKER LAB ===
+NAME                     IMAGE                 COMMAND                  SERVICE              CREATED       STATUS                PORTS
+lab-hardened-api         docker-hardened-api   "python app.py"          hardened-api         2 weeks ago   Up 2 days (healthy)   0.0.0.0:5001->5001/tcp, [::]:5001->5001/tcp
+lab-vuln-docker-socket   alpine:3.20           "sleep infinity"         vuln-docker-socket   2 weeks ago   Up 2 days             
+lab-vuln-privileged      nginx:1.27-alpine     "/docker-entrypoint.…"   vuln-privileged      2 weeks ago   Up 2 days             
+lab-vuln-web             docker-vuln-web       "python app.py"          vuln-web             2 weeks ago   Up 2 days             0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp
+
+=== MONITORING STACK ===
+NAME                    IMAGE                              COMMAND                  SERVICE      CREATED        STATUS                  PORTS
+monitoring-cadvisor     gcr.io/cadvisor/cadvisor:v0.49.1   "/usr/bin/cadvisor -…"   cadvisor     33 hours ago   Up 33 hours (healthy)   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+monitoring-grafana      grafana/grafana:11.3.1             "/run.sh"                grafana      33 hours ago   Up 33 hours             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+monitoring-prometheus   prom/prometheus:v2.55.1            "/bin/prometheus --c…"   prometheus   33 hours ago   Up 33 hours             0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp
+
+=== KUBERNETES POC ===
+NAME                              READY   STATUS    RESTARTS   AGE   IP           NODE                         NOMINATED NODE   READINESS GATES
+vulnerable-web-65db8fc64f-gqdkp   1/1     Running   0          94m   10.244.0.5   security-poc-control-plane   <none>           <none>

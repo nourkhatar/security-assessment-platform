@@ -37,6 +37,7 @@ HARDENED_API_SCENARIO_B = ServiceContext(
 def main():
     discovery = DockerDiscovery()
     services = discovery.discover_all()
+    services = [s for s in services if s.name.startswith("lab-")]
     engine = RuleEngine(run_id="phase-consolidated-run")
 
     rows = []

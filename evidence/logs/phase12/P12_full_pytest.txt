@@ -1,0 +1,41 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-8.3.4, pluggy-1.6.0 -- /home/LUMEN/projects/security-assessment-platform/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/LUMEN/projects/security-assessment-platform
+plugins: anyio-4.14.2
+collecting ... collected 32 items
+
+tests/test_ai_boundary.py::test_ai_input_preserves_deterministic_values PASSED [  3%]
+tests/test_ai_boundary.py::test_ai_output_has_no_score_or_risk_fields PASSED [  6%]
+tests/test_ai_boundary.py::test_ai_analysis_schema_is_structured PASSED  [  9%]
+tests/test_contextual_risk.py::test_context_weight_zero_is_low_tier PASSED [ 12%]
+tests/test_contextual_risk.py::test_context_weight_max_is_critical_tier PASSED [ 15%]
+tests/test_contextual_risk.py::test_technical_score_80_is_low_tier PASSED [ 18%]
+tests/test_contextual_risk.py::test_technical_score_79_is_medium_tier PASSED [ 21%]
+tests/test_contextual_risk.py::test_technical_score_39_is_critical_tier PASSED [ 25%]
+tests/test_contextual_risk.py::test_same_technical_score_different_context_different_risk PASSED [ 28%]
+tests/test_docker_discovery.py::test_discovers_all_four_lab_services PASSED [ 31%]
+tests/test_docker_discovery.py::test_vuln_web_runs_as_root PASSED        [ 34%]
+tests/test_docker_discovery.py::test_vuln_privileged_is_privileged PASSED [ 37%]
+tests/test_docker_discovery.py::test_hardened_api_is_nonroot_and_readonly PASSED [ 40%]
+tests/test_docker_discovery.py::test_vuln_docker_socket_has_socket_mount PASSED [ 43%]
+tests/test_kubernetes_discovery.py::test_kubernetes_poc_service_is_discovered PASSED [ 46%]
+tests/test_kubernetes_discovery.py::test_kubernetes_security_properties_are_normalized PASSED [ 50%]
+tests/test_kubernetes_discovery.py::test_kubernetes_ports_and_environment_are_discovered PASSED [ 53%]
+tests/test_report_integrity.py::test_hash_is_deterministic PASSED        [ 56%]
+tests/test_report_integrity.py::test_verify_detects_unmodified_file PASSED [ 59%]
+tests/test_report_integrity.py::test_verify_detects_tampering PASSED     [ 62%]
+tests/test_report_integrity.py::test_real_report_hash_matches_saved_hash PASSED [ 65%]
+tests/test_report_integrity.py::test_qr_payload_uses_report_hash PASSED  [ 68%]
+tests/test_rule_engine.py::test_service_verdicts_match_ground_truth[lab-vuln-privileged] PASSED [ 71%]
+tests/test_rule_engine.py::test_service_verdicts_match_ground_truth[lab-vuln-docker-socket] PASSED [ 75%]
+tests/test_rule_engine.py::test_service_verdicts_match_ground_truth[lab-hardened-api] PASSED [ 78%]
+tests/test_rule_engine.py::test_service_verdicts_match_ground_truth[lab-vuln-web] PASSED [ 81%]
+tests/test_technical_score.py::test_score_matches_expected[lab-vuln-privileged-34] PASSED [ 84%]
+tests/test_technical_score.py::test_score_matches_expected[lab-vuln-docker-socket-58] PASSED [ 87%]
+tests/test_technical_score.py::test_score_matches_expected[lab-hardened-api-83] PASSED [ 90%]
+tests/test_technical_score.py::test_score_matches_expected[lab-vuln-web-54] PASSED [ 93%]
+tests/test_technical_score.py::test_score_reproducibility PASSED         [ 96%]
+tests/test_technical_score.py::test_score_range_is_valid PASSED          [100%]
+
+============================== 32 passed in 1.43s ==============================
