@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-8.3.4, pluggy-1.6.0 -- /home/LUMEN/projects/security-assessment-platform/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/LUMEN/projects/security-assessment-platform
+plugins: anyio-4.14.2
+collecting ... collected 3 items
+
+tests/test_ai_boundary.py::test_ai_input_preserves_deterministic_values PASSED [ 33%]
+tests/test_ai_boundary.py::test_ai_output_has_no_score_or_risk_fields PASSED [ 66%]
+tests/test_ai_boundary.py::test_ai_analysis_schema_is_structured PASSED  [100%]
+
+============================== 3 passed in 0.06s ===============================
